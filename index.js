@@ -12,17 +12,18 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
 // Configuring the database
-// const dbConfig = require('./configs/keys');
+const dbConfig = require('./configs/keys');
 mongoose.Promise = global.Promise;
 
-// Connecting to the database
-// mongoose.connect(dbConfig.url)
-//     .then(() => {
-//         console.log("Successfully connected to the database");
-//     }).catch(err => {
-//         console.log('Could not connect to the database. Exiting now...');
-//         process.exit();
-//     });
+//Connecting to the database
+mongoose.connect(dbConfig.url)
+    .then(() => {
+        console.log("Successfully connected to the database");
+    }).catch(err => {
+        console.log('Could not connect to the database. Exiting now...');
+        process.exit();
+    });
+
 require('./routes/note.routes')(app);
 require('./routes/video.routes')(app);
 require('./routes/app.routes')(app);
