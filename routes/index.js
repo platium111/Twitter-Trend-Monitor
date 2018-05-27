@@ -20,7 +20,7 @@ router.get('/auth/twitter/callback',
         // Successful authentication
         console.log(req);
         console.log(res);
-        res.redirect('/');
+        res.send(res.oauth_token);
     });
 
 module.exports = router;
